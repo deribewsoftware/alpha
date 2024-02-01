@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+
+import userRouter from './routes/user.router'
 export const app= express()
 
 
@@ -15,6 +17,8 @@ app.use(cors({
   origin:['http://localhost:3000']
 }))
 
+//routes
+app.use('/api/v1',userRouter)
 //test api
 
 app.get('/test',(req:Request, res:Response,next:NextFunction) =>{

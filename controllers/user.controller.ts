@@ -3,6 +3,9 @@ import { CatchAsyncError } from "../middleware/catchAsyncError";
 import ErrorHandler from "../utils/ErrorHandler";
 import userModel, { IUser } from "../models/user.model";
 import jwt, { Secret } from 'jsonwebtoken'
+import ejs from 'ejs'
+import path from "path";
+import sendEmail from "../utils/sendmail";
 require("dotenv").config();
 
 interface IUserRegistration{
@@ -26,10 +29,26 @@ const user: IUserRegistration={
 }
 
 const activation=createActivationToken(user)
-res.send(201).json({
-  success:true,
-  activation
-})
+const activationCode=activation.activationCode
+const data={user:{name:user.name},activationCode}
+const html=await ejs.renderFile(path.join(__dirname,"../mails/activation-mail.ejs"),data)
+
+try{
+  await sendEmail({
+    email:user.email,
+    subject:"Activate Your Account",
+    template:"activation-mail.ejs",
+    data
+  })
+  res.status(201).json({
+    success:true,
+    message:`please check your email ${user.email} to activate your account`,
+    activationToken:activation.token
+  });
+}
+catch(error){}
+
+
  }
  catch(error:any){
   return next(new ErrorHandler(error.message,400))
