@@ -15,7 +15,7 @@ app.use(cookieParser())
 // cors origin
 const options = [
   cors({
-    origin: '*',
+    origin: 'https://ethio-exams-academy.vercel.app',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

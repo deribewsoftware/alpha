@@ -14,7 +14,7 @@
       ],
       "headers": [
         {
-          "source": "http://localhost:3000/(.*)",
+          "source": "https://ethio-exams-academy.vercel.app/(.*)",
           "headers": [
             {
               "key": "Access-Control-Allow-Origin",
