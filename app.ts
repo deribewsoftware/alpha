@@ -14,7 +14,7 @@ app.use(cookieParser())
 
 // cors origin
 app.use(cors({
-  origin:'http://localhost:3000',
+  origin:process.env.ORIGIN,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // enable credentials (cookies, Authorization headers, etc.)
   optionsSuccessStatus: 204,
