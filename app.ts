@@ -14,7 +14,10 @@ app.use(cookieParser())
 
 // cors origin
 app.use(cors({
-  origin:['http://localhost:3000','https://ethio-exams-academy.vercel.app']
+  origin:'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // enable credentials (cookies, Authorization headers, etc.)
+  optionsSuccessStatus: 204,
 }))
 
 //routes
