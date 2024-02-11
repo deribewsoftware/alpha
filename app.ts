@@ -13,9 +13,10 @@ app.use(express.json({limit:"50mb"}))
 app.use(cookieParser())
 
 // cors origin
+//'https://ethio-exams-academy.vercel.app'
 const options = [
   cors({
-    origin: 'https://ethio-exams-academy.vercel.app',
+    origin: '*',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
