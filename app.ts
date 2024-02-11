@@ -13,12 +13,7 @@ app.use(express.json({limit:"50mb"}))
 app.use(cookieParser())
 
 // cors origin
-app.use(cors({
-  origin:process.env.ORIGIN,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // enable credentials (cookies, Authorization headers, etc.)
-  optionsSuccessStatus: 204,
-}))
+app.use(cors())
 
 //routes
 app.use('/api/v1',userRouter)
